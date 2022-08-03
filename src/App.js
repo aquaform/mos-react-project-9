@@ -47,6 +47,7 @@ function App() {
   } else {
     return (
       <>
+        <GlobalStyles />
         <h2>Нужно залогиниться!</h2>
         <Button onClick={() => setLogin(true)}>
           Войти
