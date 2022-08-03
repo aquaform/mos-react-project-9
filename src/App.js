@@ -1,25 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState} from 'react';
+import Shop from "./Shop";
+import GlobalStyles from "./globalStyles";
+import styled from "styled-components";
+
+const Button = styled.button`
+  background-color: var(--primary);
+  color: white;
+  border: 0;
+  padding: 15px 20px;
+  min-width: 150px;
+  font-size: 16px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: opacity 200ms ease-out;
+  box-shadow: 1px 1px 1px rgba(0, 0, 0, 0.2);
+  
+  &:hover {
+    opacity: 0.8;
+  }
+  
+  &:active {
+    box-shadow: 0 0 rgba(0, 0, 0, 0.2);
+    transform: translateY(1px);
+  }
+  
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }  
+`
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const [login, setLogin] = useState(false);
+
+  if (login) {
+    return (
+      <>
+        <GlobalStyles />
+        <Shop />
+        <Button onClick={() => setLogin(false)}>
+          Выйти
+        </Button>
+      </>
+    );
+  } else {
+    return (
+      <>
+        <h2>Нужно залогиниться!</h2>
+        <Button onClick={() => setLogin(true)}>
+          Войти
+        </Button>
+      </>
+    );
+  }
 }
 
 export default App;
